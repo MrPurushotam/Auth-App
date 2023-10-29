@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* subcomponents */
+.quote-container{
+    width: 50%;
+    height: 10%;
+    padding: 0.3vh;
+    margin: 0.5vh;
+    text-align: center;
+}
+.visible-label{
+    color: rgba(10, 187, 222, 0.918);
+    font-weight: 700;
+    word-spacing:0.1vh;
+    padding: 1vh;
+    margin: 0.3vh 0.5vh;
+}
+.visible-select{
+    padding: 1vh;
+    font-size: 2vh;
+    font-weight: 500;
+    border-radius: 1vh;
+}
+.quote-p{
+    width:90%;
+    height: 1.5em;
+    padding: 1vh;
+    margin: 0.3vh 0.5vh;
+    overflow:auto;
+    font-size: 2vh;
+    font-weight: 450;
+    color: black;
+    border-radius: 2vh;
+    border: 0.4vh solid green;
+    background-color: rgb(239, 238, 210);
+}
+.quote-status-edit{
+    width:90%;
+    height: 1.5em;
+    padding: 1vh;
+    margin: 0.3vh 0.5vh;
+    text-align: left;
+    font-size: 2vh;
+    font-weight: 450;
+    overflow: auto;
+    color: red;
+    border-radius:2vh;
+    border: 0.4vh solid red;
+    background-color: rgb(239, 238, 210);
+}
+.logout-container{
+    padding: 0.5vh;
+    margin: 0.1vh;
+    display:  inline;
+}
+.logout-button{
+    padding: 1vh;
+    font-size: 2vh ;
+    font-weight: 500;
+    color: white;
+    background-color: red;
+    border-radius: 1vh;
+}
+.logout-button:hover{
+    color: black;
+    transition: color 2s;
+}
+
+.dashboard-navbar-logo{
+    text-align: center;
+    font-weight: 450;
+    word-spacing: 0.5vh;
+    margin: 2vh;
+    padding: 1vh;
+    color: purple;
+}
+
+.dashboard-navbar-container{
+    display: flex;
+    align-items: center;
+    margin: 0.2vh 1vh;
+    width: 98%;
+    padding: 0.1vh 0.5vh;
+    justify-content: space-between;
+}
+.dashboard-profile{
+    width: 30%;
+    height: 50%;
+    border: 1px solid black;
+    margin: 1vh auto;
+    padding: 3vh;
+    text-align: center;
+}
+.dashboard-profile-picture{
+    width: 30%;
+    height: 30%;
+    border: 1px solid black;
+    border-radius: 100%;
+}
+.dashboard-profile-picture:hover{
+    transition: height 2s;
+    transition: width 2s;
+    height: 40%;
+    width: 40%;
+}
+.dashboard-profile p{
+    height: 50%;
+    border: 1px solid black;
+    overflow:auto;
+    border-radius: 1%;
+    color: rgb(132, 80, 6);
+}
+.dpl{
+    font-weight: 600;
+    color: rgb(248, 87, 87);
+}
+.dpl:hover{
+    color: rgb(186, 36, 36);
+    transition: color 1s;
+}
