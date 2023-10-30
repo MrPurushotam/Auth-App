@@ -3,7 +3,63 @@
     padding: 0;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #FCF5ED;
+    color: black;
+  }
 /* subcomponents */
+/*HOME STYLE*/
+
+.home-about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    height: 50%;
+    background-color: #FCF5ED;
+    width: 70%;
+    max-width: 500px;
+    border: 4px solid #CE5A67;
+    padding: 50px;
+    text-align: left;
+    font-size: 18px;
+  }
+  
+
+  .signin-link,.signup-link {
+    color: #ffc436;
+    
+      cursor: pointer;
+    }
+    
+    .signin-link,.signup-link:hover {
+        color: black;
+        transition: color 1s;
+      text-decoration: none;
+      
+    }
+    
+.home-flush-btn {
+    margin-top: 35px;
+    background-color: #0174be;
+    color: #fff0ce;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .home-flush-btn:hover {
+    background-color: #015999;
+  }
+  
 .quote-container{
     width: 50%;
     height: 10%;
