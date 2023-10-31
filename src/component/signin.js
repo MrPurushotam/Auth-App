@@ -43,15 +43,15 @@ export default function SignIn(){
         }
     }
     return(
-    <>
+    <div class="container">
         <h1>SignIn Page</h1>
         <form onSubmit={submit}>
-            <div className="email-div">
+            <div className="input-txt">
                 <span>email</span>
                 <input type="text" value={user.email} onChange={e=>setUser({...user,email:e.target.value})} required/>
             </div>
 
-            <div className="password-div">
+            <div className="input-txt">
                 <span>password</span>
                 <input type="password" value={user.password} onChange={e=>setUser({...user,password:e.target.value})} required/>
             </div>
@@ -63,6 +63,7 @@ export default function SignIn(){
                 <input type="submit" value={'SignIn'}/>    
             </div>    
         </form>
-    </>
+    </div>
+    
     )
 }
