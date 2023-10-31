@@ -30,23 +30,23 @@ export default function SignUp(){
         }
     }
     return(
-    <>
+        <div class="container">
         <h1>SignUp Page</h1>
         <form onSubmit={submit}>
-            <div className="email-div">
-                <span>email</span>
+        <div className="input-txt">
+                <span>Email</span>
                 <input type="text" value={user.email} onChange={e=>setUser({...user,email:e.target.value})} required/>
             </div>
-            <div className="email-div">
+            <div className="input-txt">
                 <span>Name</span>
                 <input type="text" value={user.name} onChange={e=>setUser({...user,name:e.target.value})} required/>
             </div>
 
-            <div className="password-div">
-                <span>password</span>
+            <div className="input-txt">
+                <span>Password</span>
                 <input type="password" value={user.password} onChange={e=>setUser({...user,password:e.target.value})} required/>
             </div>
-            <div className="profile-div">
+            <div className="input-txt">
                 <span>Profile Photo </span>
                 <input type="file" name='profile' 
                 onChange={(e)=>{
@@ -60,6 +60,6 @@ export default function SignUp(){
                 <input type="submit" value={'SignUp'} />    
             </div>    
         </form>
-    </>
+ </div>
     )
 }
