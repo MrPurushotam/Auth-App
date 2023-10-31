@@ -6,16 +6,16 @@ export default function Home(){
 
     return(
         <div className="home-about">
-        <h2>Welcome, Developers!</h2>
+        <h2>Hiii There !</h2>
         <p>
-          Unlock Your Potential with Innovative Solutions.
-          <br /><br />Hey there, tech enthusiasts, welcome to our digital haven
-          for developers!
+          Yeah you are Here As expected!
+          <br /><br />
+            Register Yourself & Log Yourself Weirdo!
         </p>
         <br />
         
-        <Link className='signin-link' to="/signin">SignIn</Link><br />
-        <Link className='signup-link' to="/signup">SignUp</Link>
+        <Link className='signup-link' to="/signup">SignUp</Link><br />
+        <Link className='signin-link' to="/signin">SignIn</Link>
   
         <button className='home-flush-btn'
         onClick={(e)=>{
