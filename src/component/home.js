@@ -1,14 +1,21 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
+
 export default function Home(){
 
     return(
-        <div className="about">
-            <h2 classsName="about-title">Welcome Asshole!</h2>
-            <p>Yeah you are Here As expected<br/> <Link to="/signin">SignIn</Link> here...
-            <br/><Link to="/signup">SignUp</Link> here...
-            </p>
+        <div className="home-about">
+        <h2>Hello Mf** !</h2>
+        <p>
+          Yeah you are Here As expected!
+          <br /><br />
+            Register Yourself & Log Yourself Weirdo!
+        </p>
+        <br />
+        
+        <Link className='signup-link' to="/signup">SignUp</Link><br />
+        <Link className='signin-link' to="/signin">SignIn</Link>
             <button 
             onClick={(e)=>{
                 e.preventDefault();

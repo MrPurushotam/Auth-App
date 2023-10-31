@@ -35,7 +35,7 @@ export default function SignIn(){
            }
             else{
                 let d=JSON.stringify(await jwt.decode(cook))
-                document.cookie=`data=${d};expires=${date};2='/signin'`;
+                document.cookie=`data=${d};expires=${date};Path='/signin'`;
                 navigate('/dashboard');
             }
         }else{
@@ -44,10 +44,10 @@ export default function SignIn(){
         setLoading(false);
     }
     return(
-    <>
+    <div className="container">
         <h1>{!loading?'SignIn Page':'Loading'}</h1>
         <form onSubmit={submit}>
-            <div className="email-div">
+            <div className="input-txt">
                 <span>email</span>
                 <input type="text" value={user.email}  
                 onChange={e=>{
@@ -56,7 +56,7 @@ export default function SignIn(){
                 }} required/>
             </div>
 
-            <div className="password-div">
+            <div className="input-txt">
                 <span>password</span>
                 <input type="password" value={user.password} 
                 onChange={e=>{
@@ -76,6 +76,7 @@ export default function SignIn(){
                 <input type="submit" disabled={buttonDisabled} value={'SignIn'}/>    
             </div>    
         </form>
-    </>
+    </div>
+    
     )
 }

@@ -37,7 +37,7 @@ export default function SignUp(){
     
     }
     return(
-    <>
+    <div class="container">
         <h1>{!loading?'SignUp Page':"Loading"}</h1>
         <form onSubmit={submit}>
             <div className="uname-div">
@@ -97,7 +97,7 @@ export default function SignUp(){
                 }} 
                 required/>
             </div>
-            <div className="profile-div">
+            <div className="input-txt">
                 <span>Profile Photo </span>
                 <input type="file" name='profile' 
                 onChange={(e)=>{
@@ -111,6 +111,6 @@ export default function SignUp(){
                 <input type="submit" value={'SignUp'} disabled={buttonDisabled} />    
             </div>    
         </form>
-    </>
+ </div>
     )
 }
