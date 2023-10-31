@@ -12,4 +12,20 @@ const splitCookies=(name)=>{
     }
     return null;
 }
-export {splitCookies};
+const hasLowCaseChar=(temp)=>{
+    return /[A-Z]/.test(temp);
+}
+const hasUpCaseChar=(temp)=>{
+    return /[a-z]/.test(temp);
+}
+const hasSpecialChar=(temp)=>{
+    return /[!@#$%^&*-_+=`~?/]/.test(temp);
+}
+const hasNumbers=(temp)=>{
+    return /\d/.test(temp);
+}
+const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+export {splitCookies,hasLowCaseChar,hasUpCaseChar,hasSpecialChar,hasNumbers,isValidEmail};

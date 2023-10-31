@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import {hasLowCaseChar,hasUpCaseChar,hasSpecialChar,hasNumbers,isValidEmail} from "./constFunctions";
 
 export default function SignUp(){
     const navigate=useNavigate();
+    const [buttonDisabled,setButtonDisabled]=useState(true);
+    const [loading,setLoading]=useState(false);
+
     const [user,setUser]=useState({
         email:"",
         password:"",
@@ -12,6 +16,7 @@ export default function SignUp(){
     });
     const submit=async (e)=>{
         e.preventDefault();
+        setLoading(true)
         const formData=new FormData();
         formData.append('email',user.email);
         formData.append('password',user.password);
@@ -22,29 +27,75 @@ export default function SignUp(){
                 'Content-Type':'multipart/form-data',
             },
         });
+        setLoading(false)
         const data=resp;
         console.log(resp)
         console.log(data.data.status)
         if(data.data.status==='ok'){
             navigate('/signin');
         }
+    
     }
     return(
     <>
-        <h1>SignUp Page</h1>
+        <h1>{!loading?'SignUp Page':"Loading"}</h1>
         <form onSubmit={submit}>
+            <div className="uname-div">
+                <span>Name</span>
+                <input type="text" value={user.name}
+                onChange={e=>{
+                    let uname=e.target.value;
+                    if(uname.length<4){
+                        setButtonDisabled(true);
+                    }
+                    setUser({...user,name:e.target.value})
+                }}
+                required/>
+            </div>
+            
             <div className="email-div">
                 <span>email</span>
-                <input type="text" value={user.email} onChange={e=>setUser({...user,email:e.target.value})} required/>
-            </div>
-            <div className="email-div">
-                <span>Name</span>
-                <input type="text" value={user.name} onChange={e=>setUser({...user,name:e.target.value})} required/>
+                <input type="text" value={user.email}
+                onChange={e=>{
+                    setUser({...user,email:e.target.value})
+                    setButtonDisabled(!isValidEmail(e.target.value));
+                }}
+                 required/>
             </div>
 
             <div className="password-div">
                 <span>password</span>
-                <input type="password" value={user.password} onChange={e=>setUser({...user,password:e.target.value})} required/>
+                <input type="password" value={user.password} 
+                onChange={e=>{
+                        let password=e.target.value
+                        setUser({...user,password:e.target.value})
+                        setButtonDisabled((
+                            password.length<8 || 
+                            !hasUpCaseChar(password) ||
+                            !hasLowCaseChar(password)||
+                            !hasSpecialChar(password)||
+                            !hasNumbers(password)
+                        ))
+                    }} 
+                required/>
+            </div>
+            <div className="password-div">
+                <span>confrim-password</span>
+                <input type="password" 
+                onChange={e=>{
+                    let confrimPassword=e.target.value;
+                    setButtonDisabled((
+                        confrimPassword.length<8 || 
+                        !hasUpCaseChar(confrimPassword) ||
+                        !hasLowCaseChar(confrimPassword)||
+                        !hasSpecialChar(confrimPassword)||
+                        !hasNumbers(confrimPassword)
+                    ))
+                    if(confrimPassword!==user.password){
+                        setButtonDisabled(true)
+                    }
+                }} 
+                required/>
             </div>
             <div className="profile-div">
                 <span>Profile Photo </span>
@@ -57,7 +108,7 @@ export default function SignUp(){
             </div>
 
             <div>
-                <input type="submit" value={'SignUp'} />    
+                <input type="submit" value={'SignUp'} disabled={buttonDisabled} />    
             </div>    
         </form>
     </>

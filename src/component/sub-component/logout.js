@@ -5,9 +5,9 @@ export default function Logout(){
     const navigate=useNavigate();
     const logout=(e)=>{
         e.preventDefault();
-        document.cookie=`data=;expire=;path='/signin'`;
-        document.cookie=`xtoken=;expire=;path='/signin'`;
-        document.cookie=`status=;expire=;path='/signin'`;
+        document.cookie=`data=;expire=;Path='/signin'`;
+        document.cookie=`xtoken=;expire=;Path='/signin'`;
+        document.cookie=`status=;expire=;Path='/signin'`;
         console.log("cookie deleted!")
         navigate('/')
     }

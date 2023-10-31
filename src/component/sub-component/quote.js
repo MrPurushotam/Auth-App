@@ -1,16 +1,15 @@
 import axios from 'axios';
-import React, { useState,useRef } from 'react'
+import React, { useState,useRef,useEffect } from 'react'
 import { splitCookies } from '../constFunctions';
 
 export default function Quote(){
     const user=useRef({});
-
     let date=new Date();
-    date.setDate(date.getDate()+1)   
+    date.setDate(date.getDate()+1)
     user.current=JSON.parse(splitCookies('data'));
-    document.cookie=`status=${user.current.status};expires=${date};path='/dashboard'`;
-    const [customState,setCustomStatus]=useState(splitCookies('status')?splitCookies('status'):" ");
+    const [customState,setCustomStatus]=useState(splitCookies('status')?splitCookies('status'):"Enter Status");
     const [change,setChange]=useState(false);
+
     const submit=async (e)=>{
         if(e.keyCode===13){
             e.preventDefault();
@@ -26,13 +25,29 @@ export default function Quote(){
             console.log(res)
             if(res.data.status==='ok'){
                 console.log("success")
-                let x=res.data.quote;
+                let x=e.target.value;
                 console.log(x);
-                document.cookie=`status=${x};expires=${date};path='/dashboard'`;
+                document.cookie=`status=${x};expires=${date};Path='/dashboard'`;
                 setChange(false);
             }
         }
     }
+    useEffect(()=>{
+        //first request to get status
+        const get=async()=>{
+            if(splitCookies('data')&& !splitCookies('status')){
+                const res= await axios.post('http://localhost:9000/api/current/quote',JSON.stringify({email:user.current.email}),{
+                    headers:{
+                        "Content-Type":"application/json",
+                    }
+                })
+                console.log(res)
+                document.cookie=`status=${res.data.status};expires=${date};Path='/dashboard'`;
+                setCustomStatus(splitCookies('status'))
+            }
+        }
+        get()
+    })
     return(
         <div className='quote-container'>
             <label className='visible-label'>Update Status </label>

@@ -13,6 +13,7 @@ app.use('/profile',express.static(path.join(__dirname,'server/profile/')))
 app.use(cors());
 app.use(express.json());
 mongoose.connect('mongodb://127.0.0.1:27017/auth-with-react');
+
 const storage=multer.diskStorage({
     destination:function(req,file,cb){
         let storeLocation= (__dirname.split('server')[0]+'public/profile')
@@ -30,42 +31,22 @@ async function hashStuff(x){
 async function compareHash(x,y){
     return await bcrypt.compare(x,y)
 }
-const splitCookies=(name)=>{
-    let cookies=document.cookie.split(';');
-    for(const cookie of cookies){
-        const [cookieName,cookieValue]=cookie.trim().split('=');
-        if(cookieName===name){
-            return decodeURI(cookieValue);
-        }
-    }
-    return null;
-}
 const restictPath=(req,res,next)=>{
-    console.log(splitCookies('data').data)
-    if(splitCookies('data').data){
-        res.redirect('/dashboard');
-    }
+    // if(req.cookies.data){
+    //     return res.redirect('/dashboard');
+    // }
     next();
 }
-
 app.post('/api/signin',async(req,res)=>{
     const user=await User.findOne({
         email:req.body.user.email,
     })
     if(user){
-        let quoteCheck
-        if(user.hasOwnProperty('quote')){
-            quoteCheck = user.quote
-        }else{
-            quoteCheck="Enter Quote"
-        }
-        console.log(quoteCheck)
         if(compareHash(user.password,req.body.user.password)){
             const token=jwt.sign({
                 name:user.name,
                 email:user.email,
                 profile:user.profile,
-                status:quoteCheck,
                 id:user._id,
             },'qwadsrgr')
             console.log(user)
@@ -93,17 +74,14 @@ app.post('/api/signup',upload.single('profile'),async(req,res)=>{
     }
 })
 
-
 app.post('/test',upload.single('test'),(req,res)=>{
     try{
         console.log(req.file)
-
         res.json({status:'ok'})
     }catch(e){
         res.json({status:e.message})
     }
 })
-
 
 app.get("/api/populate",async (req,res)=>{
     const token=req.headers['x-access-token'];
@@ -121,26 +99,20 @@ app.get("/api/populate",async (req,res)=>{
 app.post('/api/update/quote',async(req,res)=>{
     try{
         console.log(req.body.temp);
-        const user=await User.updateOne({email:req.body.temp.email},{$set:{quote:req.body.temp.quote}});
+        await User.updateOne({email:req.body.temp.email},{$set:{quote:req.body.temp.quote}});
         res.json({status:'ok'})
     }catch(e){
         res.json({status:'error',error:e.message})
     }
 })
-app.post("/api/populate",async (req,res)=>{
-    const token=req.headers['x-access-token'];
+app.post('/api/current/quote',async(req,res)=>{
     try{
-        // const decoded=jwt.verify(token,'qwadsrgr');
-        // const email=decoded.email;
-        // const user=await User.updateOne({email:email}); //include quote {$set:{quote:req.body.quote}}
-        // return{status:'ok'};
-    }
-    catch(e){
-        console.log(e);
-        res.json({status:"error",error:'Invalid Token'})
+        const user=await User.findOne({email:req.body.email})
+        res.json({status:'ok',status:user.quote?user.quote:"Enter Status"})
+    }catch(e){
+        res.json({status:'error',error:e.message})
     }
 })
-
 app.get('/',(req,res)=>{
     res.send("Why are you here?!");
 })

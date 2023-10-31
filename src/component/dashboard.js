@@ -2,25 +2,9 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 import DashboardNavbar from './sub-component/dashboard-navbar';
 import { splitCookies } from './constFunctions';
-// import {useNavigate} from 'react-router-dom';
-// import jwt from 'jsonwebtoken';
 
 export default function Dashboard(){
     const User=useRef({});
-    // const navigate=useNavigate();
-    // async function populateCode(){
-    //     let data=0;
-    //     if(!splitCookies('data')){
-    //         const req=await axios.post('http://localhost:9000/api/populate',{
-    //             headers:{
-    //                 'x-access-token':splitCookies('xtoken'),
-    //             },
-    //         })
-    //         data=req;
-    //     }
-    //     data=data?data:splitCookies('data');
-    //     console.log(data)
-    // }
     async function getUser(){
         let user=splitCookies('data')
         let req=0;
