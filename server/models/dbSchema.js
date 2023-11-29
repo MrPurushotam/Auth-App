@@ -5,8 +5,7 @@ const User=new mongoose.Schema({
         password:{type:String,required:true},
         profile:{type:String,required:true},
         quote:{type:String,required:false},
-    },{collection:'user-data'}
-)
+    },{collection:'user-data'})
 const model=mongoose.model('UserData',User);
 
 module.exports=model;

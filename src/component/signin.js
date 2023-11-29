@@ -44,21 +44,22 @@ export default function SignIn(){
         setLoading(false);
     }
     return(
-    <div className="container">
-        <h1>{!loading?'SignIn Page':'Loading'}</h1>
+    <div className="parent-container">
+    <div className="container signin">
+        <h1 className="container-title">{!loading?'SignIn Page':'Loading'}</h1>
         <form onSubmit={submit}>
-            <div className="input-txt">
-                <span>email</span>
-                <input type="text" value={user.email}  
+            <div className="input-txt common-div-class">
+                <span className="common-span">Email</span>
+                <input type="text" className="common-input-text" value={user.email}  
                 onChange={e=>{
                     setUser({...user,email:e.target.value})
                     setButtonDisabled(!isValidEmail(e.target.value));
                 }} required/>
             </div>
 
-            <div className="input-txt">
-                <span>password</span>
-                <input type="password" value={user.password} 
+            <div className="input-txt common-div-class">
+                <span className="common-span">Password</span>
+                <input type="password" className="common-input-text" value={user.password} 
                 onChange={e=>{
                     let password=e.target.value;
                     setUser({...user,password:password})
@@ -73,10 +74,10 @@ export default function SignIn(){
                 required/>
             </div>
             <div>
-                <input type="submit" disabled={buttonDisabled} value={'SignIn'}/>    
+                <input type="submit" className="common-submit-btn" disabled={buttonDisabled} value={'SignIn'}/>    
             </div>    
         </form>
     </div>
-    
+    </div>    
     )
 }

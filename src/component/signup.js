@@ -37,12 +37,13 @@ export default function SignUp(){
     
     }
     return(
-    <div class="container">
-        <h1>{!loading?'SignUp Page':"Loading"}</h1>
+    <div className='parent-container'>
+    <div class="container signup">
+        <h1 className="container-title">{!loading?'SignUp Page':"Loading"}</h1>
         <form onSubmit={submit}>
-            <div className="uname-div">
-                <span>Name</span>
-                <input type="text" value={user.name}
+            <div className="uname-div common-div-class">
+                <span className="common-span">Name</span>
+                <input type="text" className="common-input-text" value={user.name}
                 onChange={e=>{
                     let uname=e.target.value;
                     if(uname.length<4){
@@ -53,9 +54,9 @@ export default function SignUp(){
                 required/>
             </div>
             
-            <div className="email-div">
-                <span>email</span>
-                <input type="text" value={user.email}
+            <div className="email-div common-div-class">
+                <span className="common-span">Email</span>
+                <input type="text" className="common-input-text" value={user.email}
                 onChange={e=>{
                     setUser({...user,email:e.target.value})
                     setButtonDisabled(!isValidEmail(e.target.value));
@@ -63,9 +64,9 @@ export default function SignUp(){
                  required/>
             </div>
 
-            <div className="password-div">
-                <span>password</span>
-                <input type="password" value={user.password} 
+            <div className="password-div common-div-class">
+                <span className="common-span">Password</span>
+                <input type="password" className="common-input-text" value={user.password} 
                 onChange={e=>{
                         let password=e.target.value
                         setUser({...user,password:e.target.value})
@@ -79,9 +80,9 @@ export default function SignUp(){
                     }} 
                 required/>
             </div>
-            <div className="password-div">
-                <span>confrim-password</span>
-                <input type="password" 
+            <div className="password-div common-div-class">
+                <span className="common-span">Confirm Password</span>
+                <input type="password" className="common-input-text"
                 onChange={e=>{
                     let confrimPassword=e.target.value;
                     setButtonDisabled((
@@ -97,9 +98,9 @@ export default function SignUp(){
                 }} 
                 required/>
             </div>
-            <div className="input-txt">
-                <span>Profile Photo </span>
-                <input type="file" name='profile' 
+            <div className="input-file common-div-class">
+                <span className="common-span">Profile Photo </span>
+                <input type="file" className="common-input-text" name='profile' 
                 onChange={(e)=>{
                     console.log(e.target.files);
                     setUser({...user,photo:e.target.files[0]})
@@ -108,9 +109,10 @@ export default function SignUp(){
             </div>
 
             <div>
-                <input type="submit" value={'SignUp'} disabled={buttonDisabled} />    
+                <input type="submit" value={'SignUp'} disabled={buttonDisabled} className="common-submit-btn"/>    
             </div>    
         </form>
+ </div>
  </div>
     )
 }

@@ -23,6 +23,7 @@ export default function Dashboard(){
         User.current=JSON.parse(splitCookies('data'));
     }
     return(
+    <div className='parent-container'>
         <div className='dashboard'>
             <DashboardNavbar/>
             <div className='dashboard-profile'>
@@ -36,5 +37,6 @@ export default function Dashboard(){
                 <p className='dashboard-uid'>{User.current.id}</p>
             </div>
         </div>
+    </div>
     )
 } 
